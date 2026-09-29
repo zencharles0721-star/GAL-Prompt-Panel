@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#11121b">
+  <title>GAL-Prompt-Panel V1.0 · GAL 生图短句选项面板</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="prompt-data.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="page-header"><div class="brand-mark">✦</div><div><p class="eyebrow">GAL-Prompt-Panel V1.0 · 原创角色</p><h1>GAL 生图短句选项面板</h1><p class="subtitle">把灵感选成一句话，让角色始终是她自己。</p></div><span class="local-badge">本地运行 · 自动保存</span></header>
+  <main class="workspace">
+    <div class="options-column"><section class="card identity-card"><div class="section-title"><span class="step">01</span><h2>选择你的主角</h2><span class="hint">原创 · 成年女性</span></div><div id="characters" class="character-grid"></div><p id="identity-note" class="note"></p><details><summary>角色 Master 设定说明</summary><p class="note">已录入奈奈、姬、爱的正式角色设定。姬的脸部、身体、头发与整体身份均来自 JI CHARACTER SHEET V1；奈奈与爱分别遵循各自身份链。角色设定优先于画风和内容参考，三人合照逐人独立输出。</p></details><div class="recommendations"><h3>为她推荐 <span>一键搭配</span></h3><div id="presets" class="choices"></div></div></section>
+    <section class="card"><div class="section-title"><span class="step">02</span><h2>搭配画面</h2><span class="hint">点选即生成</span></div><details id="common-options" class="option-fold" open><summary>常用选项<span>画风、场景、姿势与服装</span></summary><div id="option-groups"></div></details><details id="advanced-options" class="option-fold"><summary>高级选项<span>时间、天气、发型、镜头与约束</span></summary><p class="note">折叠只隐藏选项，已选设置仍会参与生成。</p><div id="advanced-groups"></div></details></section>
+    <section id="constraints" class="card"><div class="section-title"><span class="step">03</span><h2>角色与参考约束</h2></div><div class="field"><div class="field-heading"><h3>角色强化 <span>可多选</span></h3><button id="lock-all" class="text-button" type="button">全部强锁</button></div><div id="locks" class="choices"></div></div><div id="reference-group"></div><p class="note">参考图只读取所选内容；始终禁止继承参考人物的脸、身材、头发、发色与身份。</p><label class="field-label" for="extra">自定义追加词</label><textarea id="extra" rows="3" placeholder="例如：暖色室内光、自然抓拍感、头发轻微被风吹动"></textarea></section></div>
+    <aside class="output-column"><section class="card output-card"><div class="section-title"><span class="step">04</span><h2>你的生图提示词</h2><span class="live-dot">实时</span></div><label class="field-label" for="short-prompt">短句预览</label><p id="short-prompt" class="short-prompt" aria-live="polite"></p><div class="prompt-heading"><label class="field-label" for="full-prompt">完整 Prompt</label><span id="edit-state" class="hint">可直接编辑</span></div><div class="prompt-tools"><button id="prompt-top" type="button">回到开头</button><button id="prompt-bottom" type="button">查看末尾</button></div><textarea id="full-prompt" rows="24" spellcheck="false" aria-describedby="prompt-help"></textarea><p id="prompt-help" class="note">修改选项会重新生成全文；手动编辑会自动保存。追加词并入构图段，保持固定段落顺序。</p><div class="utility-actions"><button id="regenerate" type="button">重新生成 Prompt</button><button id="randomize" type="button">✦ 随机搭配</button><button id="clear" type="button">清空</button></div></section><section class="card"><div class="section-title"><h2>我的收藏与配置</h2></div><label class="field-label" for="favorite-name">收藏名称（可选）</label><input id="favorite-name" maxlength="80" placeholder="例如：姬的雨夜咖啡店"><div class="config-actions"><button id="favorite-save" type="button">收藏当前组合</button><button id="export-config" type="button">导出配置 JSON</button><button id="import-config" type="button">导入配置 JSON</button></div><input id="import-file" type="file" accept=".json,application/json" hidden><p class="note">收藏包含选项及手动编辑全文。导入会恢复当前组合、合并收藏与最近使用；文件不包含角色 Master 或内容库。</p><div id="favorites"></div></section><section class="card history-card"><div class="section-title"><h2>最近使用</h2><span class="hint">最多 10 条</span></div><p class="note">复制、重新生成或应用推荐时记录，点击可恢复搭配。</p><div id="history"></div></section></aside>
+  </main>
+  <footer class="action-bar"><span>灵感已就绪 <span class="footer-detail">· 角色身份始终独立</span></span><div><button id="copy-short" type="button">复制短句</button><button id="copy-full" class="primary" type="button">复制完整 Prompt <span aria-hidden="true">↗</span></button></div></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
